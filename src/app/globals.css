@@ -17,14 +17,10 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: white; /* Sets default text color to white for all text */
+  background-color: #282c34; /* Dark background for contrast */
 }
+
 
 @layer utilities {
   .text-balance {
