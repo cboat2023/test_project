@@ -29,7 +29,7 @@ export default function Home() {
           </div>
           <div className={styles.card}>
             <h2>Skills</h2>
-            <p>Data Analysis, Programming in Python, Node.js, R Studio, MATLAB</p>
+            <p>Data Analysis, Programming in Python, Node.js, R, MATLAB</p>
             <p>Tools: Microsoft Suite, Google Suite, Yahoo Finance API</p>
           </div>
         </section>
