@@ -1,29 +1,17 @@
-import Link from 'next/link';
-import styles from './Navbar.module.css';
+import styles from './Navbar.module.css'; // Ensure this path is correct
 
 const Navbar = () => {
     return (
         <nav className={styles.navbar}>
             <ul className={styles.navList}>
                 <li className={styles.navItem}>
-                    <Link href="/" legacyBehavior>
-                        <a className={styles.navLink}>Home</a>
-                    </Link>
+                    <a href="/#home" className={styles.navLink}>Home</a>  
                 </li>
                 <li className={styles.navItem}>
-                    <Link href="/resume" legacyBehavior>
-                        <a className={styles.navLink}>Resume</a>
-                    </Link>
+                    <a href="/#resume" className={styles.navLink}>Resume</a>  
                 </li>
                 <li className={styles.navItem}>
-                    <Link href="/contact" legacyBehavior>
-                        <a className={styles.navLink}>Contact</a>
-                    </Link>
-                </li>
-                <li className={styles.navItem}>
-                    <Link href="/portfolio" legacyBehavior>
-                        <a className={styles.navLink}>Portfolio</a>
-                    </Link>
+                    <a href="/#portfolio" className={styles.navLink}>Portfolio</a> 
                 </li>
             </ul>
         </nav>
@@ -31,4 +19,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

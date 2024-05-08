@@ -1,7 +1,14 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",      // This should be set to the root of your project
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"] // Assuming 'src' is directly under the project root
     }
-  }
+  },
+  "include": [
+    "src/**/*"           // Make sure all files under src are included
+  ]
 }
+
+
+/// ./src/*
