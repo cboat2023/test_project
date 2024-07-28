@@ -1,21 +1,15 @@
-import styles from './Navbar.module.css'; // Ensure this path is correct
+import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
-    return (
-        <nav className={styles.navbar}>
-            <ul className={styles.navList}>
-                <li className={styles.navItem}>
-                    <a href="/#home" className={styles.navLink}>Home</a>  
-                </li>
-                <li className={styles.navItem}>
-                    <a href="/#resume" className={styles.navLink}>Resume</a>  
-                </li>
-                <li className={styles.navItem}>
-                    <a href="/#portfolio" className={styles.navLink}>Portfolio</a> 
-                </li>
-            </ul>
-        </nav>
-    );
+  return (
+    <nav className={styles.navbar}>
+      <ul>
+        <li><a className={styles.navLink} href="#home">Home</a></li>
+        <li><a className={styles.navLink} href="#portfolio">Portfolio</a></li>
+        <li><a className={styles.navLink} href="#education">Resume</a></li>
+      </ul>
+    </nav>
+  );
 };
 
 export default Navbar;

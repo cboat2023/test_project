@@ -1,77 +1,296 @@
-.container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  margin: 0 15px;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: #00bfa5;
+}
+
+.hero {
+  background-image: url('/mt-fuji.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('https://www.freecodecamp.org/news/content/images/2022/09/jonatan-pie-3l3RwQdHRHg-unsplash.jpg');
+  text-align: center;
+  color: white;
+  position: relative;
+  width: 100%;
 }
-  
-  .main {
-    padding: 5rem 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white
-  }
-  
-  .title {
-    margin: 0;
-    line-height: 1.15;
-    font-size: 4rem;
-    font-family: 'Nunito', sans-serif;
-    color:white
-  }
-  
-  .description {
-    font-family: 'Nunito', sans-serif;
-    line-height: 1.5;
-    font-size: 1.5rem;
-  }
-  
-  .grid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 800px;
-    margin-top: 3rem;
 
-  }
-  
-  .card {
-    margin: 1rem;
-    flex-basis: 45%;
-    padding: 1.5rem;
-    text-align: left;
-    color: white;
-    text-decoration: none;
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
-    transition: color 0.15s ease, border-color 0.15s ease;
-    font-family: 'Nunito', sans-serif;
+.content {
+  margin-top: 20px;
+}
 
-  }
-  
-  .card:hover,
-  .card:focus,
-  .card:active {
-    color: orange;
-    border-color:orange;
-  }
-  
-  .title a {
-    color: #0070f3;
-    text-decoration: none;
-  }
-  
-  .title a:hover,
-  .title a:focus,
-  .title a:active {
-    text-decoration: underline;
-  }
-  
+.content h1 {
+  font-size: 4em;
+  margin-bottom: 20px;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.socialLinks a {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.socialLinks img {
+  width: 30px;
+  height: 30px;
+  filter: invert(100%);
+}
+
+.arrowContainer {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.arrow img {
+  width: 40px;
+  height: 40px;
+  filter: invert(100%);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.arrow img:hover {
+  transform: scale(1.1);
+  filter: invert(50%) sepia(100%) saturate(300%) hue-rotate(90deg);
+}
+
+.resume {
+  background-color: white;
+  color: #333;
+  padding: 50px 20px;
+  text-align: left;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 60px;
+}
+
+.resume h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #00bfa5;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.portfolio {
+  background-color: white;
+  color: black;
+  padding: 50px 20px;
+  text-align: center;
+  min-height: 100vh;
+  margin-top: 60px;
+}
+
+.portfolio h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #00bfa5;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project {
+  width: 300px;
+  margin: 20px;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.project:hover {
+  transform: scale(1.05);
+}
+
+.project img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.project h3 {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modalImage {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  text-align: center;
+}
+
+.modalClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.visitSiteButton {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.visitSiteButton:hover {
+  background-color: #005bb5;
+}
+
+.section {
+  background-color: white;
+  color: #333;
+  padding: 50px 20px;
+  text-align: left;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 60px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #00bfa5;
+  padding-bottom: 5px;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5em;
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  align-items: center;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardHeader h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.cardHeader span {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.cardDetails {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.card img {
+  max-width: 50px;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.companyLogo {
+  max-width: 50px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.cardDetails p {
+  margin: 10px 0;
+  color: #666;
+}
+
+.cardDetails ul {
+  padding-left: 20px;
+  list-style-type: disc;
+  margin: 10px 0 0;
+}
+
+.cardDetails ul li {
+  margin: 5px 0;
+  color: #333;
+}
 
