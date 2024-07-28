@@ -101,7 +101,7 @@ export default function HomePage() {
               <ul>
                 <li>Conducted comprehensive research and company valuation for company in the construction sector, then presented our findings, successfully impacting investment decisions</li>
                 <li>Led renovation of deal database in order to streamline valuation process</li>
-                <li>Executed exploratory data analysis, then implemented machine learning in support of company valuation, ultimately impacting company-wide decisions regarding</li>
+                <li>Executed exploratory data analysis, then implemented machine learning in support of company valuation, ultimately impacting company-wide decisions</li>
               </ul>
             </div>
           </div>
