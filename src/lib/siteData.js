@@ -20,6 +20,7 @@ export const projects = [
       "Assessing Market Risk of S&P 500 Companies Using Support Vector Machines.",
     details:
       "Developed a predictive model to assess market risk of publicly traded companies.",
+    tags: ["SVM", "Market Risk", "Statistics"],
     link: "https://github.com/cboat2023/Assessing-Market-Risk-of-S-P",
   },
   {
@@ -31,6 +32,7 @@ export const projects = [
       "Evaluated the potential of a Placer.ai dataset in enhancing investment decisions.",
     details:
       "Part of work as an intern on the Data Science department at The Jordan Company.",
+    tags: ["Investment Research", "Data Science", "Alternative Data"],
     link: "https://github.com/cboat2023/Analysis-of-Placer.ai-Dataset",
   },
   {
@@ -42,6 +44,7 @@ export const projects = [
       "A placeholder area for future community, makerspace, or build-in-public projects.",
     details:
       "TODO: add real makerspace, community, or campus projects with links and outcomes.",
+    tags: ["Community", "Makerspace", "TODO"],
     link: null,
   },
 ];
