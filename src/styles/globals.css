@@ -12,6 +12,7 @@
   --accent: #2f7d7e;
   --accent-strong: #1f5f61;
   --gold: #c9a227;
+  --site-texture-overlay: rgba(246, 241, 231, 0.9);
 }
 
 * {
@@ -33,11 +34,31 @@ html {
 
 body {
   color: var(--ink);
-  background:
-    linear-gradient(180deg, rgba(238, 244, 247, 0.84), rgba(247, 249, 252, 0) 360px),
-    var(--background);
+  position: relative;
+  background: #f2eee6;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
+}
+
+body::after {
+  position: fixed;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+body::after {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(36, 31, 27, 0.025) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(36, 31, 27, 0.022) 1px, transparent 1px),
+    var(--site-texture-overlay);
+  background-size: 64px 64px, 64px 64px, auto;
+}
+
+body > * {
+  position: relative;
+  z-index: 0;
 }
 
 a {

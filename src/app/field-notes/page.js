@@ -12,29 +12,25 @@ export default function FieldNotesPage() {
   const categories = [...new Set(notes.map((note) => note.category))];
 
   return (
-    <main className={styles.pageShell}>
-      <header className={styles.pageHeader}>
-        <p className={styles.eyebrow}>Field Notes</p>
-        <h1>Learning notes, project logs, book notes, training notes, and reflections.</h1>
+    <main className={styles.archivePage}>
+      <header className={styles.archiveHero}>
+        <p className={styles.kicker}>Field Notes</p>
+        <h1>Notes from the reps: study, training, building, prayer, and reflection.</h1>
         <p>
-          A public learning archive for finance, statistics, technology, squash,
-          faith, community, books, and disciplined practice.
+          A public learning archive for what I am trying to understand and practice.
+          Some notes are polished. Some are logs. The point is to keep a record of attention.
         </p>
       </header>
 
-      <section className={styles.filterRail} aria-label="Field Notes categories">
-        {categories.map((category) => (
-          <span key={category}>{category}</span>
-        ))}
-      </section>
 
-      <section className={styles.noteList} aria-label="All Field Notes">
-        {notes.map((note) => (
-          <Link className={styles.noteRow} href={`/field-notes/${note.slug}`} key={note.slug}>
+      <section className={styles.archiveLedger} aria-label="All Field Notes">
+        {notes.map((note, index) => (
+          <Link className={styles.archiveLedgerItem} href={`/field-notes/${note.slug}`} key={note.slug}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
             <div>
-              <span>{note.category} / {note.type}</span>
+              <p>{note.category} / {note.type}</p>
               <h2>{note.title}</h2>
-              <p>{note.excerpt}</p>
+              <small>{note.excerpt}</small>
             </div>
             <time dateTime={note.date}>{note.date}</time>
           </Link>

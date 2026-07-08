@@ -92,9 +92,8 @@ export default function HomePage() {
             </div>
           </section>
 
+
           <section aria-labelledby="principles-title">
-            <p className={styles.kicker}>Principles / Rule of Life</p>
-            <h2 id="principles-title">Operating code.</h2>
             <ol className={styles.sidePrinciples}>
               {homeContent.principles.map((principle) => (
                 <li key={principle}>{principle}</li>
@@ -102,7 +101,7 @@ export default function HomePage() {
             </ol>
           </section>
         </aside>
-      </section>
+      </section> 
 
       <section className={styles.quoteSection} aria-labelledby="quote-category">
         <p className={styles.kicker} id="quote-category">{homeContent.footerQuote.category}</p>

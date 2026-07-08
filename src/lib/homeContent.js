@@ -6,7 +6,7 @@ export const homeContent = {
   actions: [
     { label: "Read Field Notes", href: "/field-notes" },
     { label: "Selected Work", href: "/projects" },
-    { label: "Resume", href: "/resume" },
+    { label: "Contact", href: "/contact" },
   ],
   
   collageImages: [
@@ -31,28 +31,27 @@ export const homeContent = {
   ],
   currentFocus: [
     {
-      area: "Study",
-      detail: "Statistics, finance, technology, probability, coding, and AI.",
-    },
-    {
-      area: "Training",
-      detail: "Boxing, squash, conditioning, footwork, recovery, and competitive rhythm.",
-    },
-    {
-      area: "Faith",
-      detail: "Prayer, Scripture, formation, attention, and keeping God at the center.",
-    },
-    {
-      area: "Service",
-      detail: "Mentorship, community, education, and work that compounds into impact.",
-    },
+    area: "Study",
+    detail:
+      "Building a sharper mind through statistics, finance, probability, coding, AI, reading, memory work, and clear explanation.",
+  },
+  {
+    area: "Training",
+    detail:
+      "Developing fighter rhythm through  squash, conditioning, footwork, mobility, recovery, and competitive reps.",
+  },
+  {
+    area: "Faith",
+    detail:
+      "Returning daily to prayer, Scripture, attention, humility, and keeping God at the center of my work and formation.",
+  },
+  {
+    area: "Service",
+    detail:
+      "Using mentorship, community, education, and building in public to create work that compounds into lasting impact.",
+  },
   ],
   principles: [
-    "Attention",
-    "Discipline",
-    "Humility",
-    "Craftsmanship",
-    "Service",
   ],
   footerQuote: {
     quote: "Whatever you do, work heartily, as for the Lord and not for men.",
