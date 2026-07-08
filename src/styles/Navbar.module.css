@@ -1,33 +1,93 @@
 .navbar {
-  background-color: #333;
-  position: fixed;
-  width: 100%;
+  position: sticky;
   top: 0;
-  left: 0;
-  z-index: 1000;
+  z-index: 20;
   display: flex;
-  justify-content: center;
-  padding: 10px 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  padding: 13px clamp(18px, 5vw, 72px);
+  border-bottom: 1px solid rgba(36, 31, 27, 0.14);
+  background: rgba(242, 238, 230, 0.88);
+  backdrop-filter: blur(18px);
 }
 
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.navbar ul li {
-  margin: 0 15px;
-}
-
-.navbar ul li a {
-  color: white;
+.brand {
+  color: #211c18;
+  font-size: 0.94rem;
+  font-weight: 900;
+  letter-spacing: 0;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
+  white-space: nowrap;
 }
 
-.navbar ul li a:hover {
-  color: #ddd;
+.navLinks {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(8px, 2vw, 18px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.navLinks::-webkit-scrollbar {
+  display: none;
+}
+
+.navLink {
+  position: relative;
+  color: #554a41;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+  white-space: nowrap;
+}
+
+.navLink::after {
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: #8a6f2a;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms ease;
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  color: #132238;
+}
+
+.navLink:hover::after,
+.navLink:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.navLink:focus-visible,
+.brand:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid rgba(138, 111, 42, 0.32);
+  outline-offset: 5px;
+}
+
+@media (max-width: 760px) {
+  .navbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding-block: 12px;
+  }
+
+  .navLinks {
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 3px;
+  }
 }

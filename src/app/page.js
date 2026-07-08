@@ -1,183 +1,146 @@
-"use client";
-
-import { useState } from 'react';
-import Navbar from '../components/navbar';
-import styles from '../styles/Home.module.css';
+import Link from "next/link";
+import { profile, projects } from "@/lib/siteData";
+import { getAllNotes } from "@/lib/fieldNotes";
+import styles from "../styles/Home.module.css";
 
 export default function HomePage() {
-  const [modalData, setModalData] = useState(null);
-
-  const handleCardClick = (data) => {
-    setModalData(data);
-  };
-
-  const handleCloseModal = () => {
-    setModalData(null);
-  };
-
-  const portfolioItems = [
-    {
-      title: "Assessing Market Risk",
-      image: "/Assesing Market Risk.svg",
-      description: "Assessing Market Risk of S&P 500 Companies Using Support Vector Machines",
-      details: "Develop a predictive model to assess market risk of publicly traded companies",
-      githubLink: "https://github.com/cboat2023/Assessing-Market-Risk-of-S-P"
-    },
-    {
-      title: "Analysis of Placer.ai dataset",
-      image: "/placer_demo.svg",
-      description: "Evaluate potential of Placer.ai dataset in enhancing investment decisions",
-      details: "Part of work as intern on Data Science deparment at The Jordan Company",
-      githubLink: "https://github.com/cboat2023/Analysis-of-Placer.ai-Dataset"
-    },
-  ];
+  const latestNotes = getAllNotes().slice(0, 3);
+  const selectedProjects = projects.slice(0, 3);
 
   return (
-    <div>
-      <Navbar />
-      <div className={styles.hero} id="home">
-        <div className={styles.content}>
-          <h1>Caleb Boateng</h1>
-          <div className={styles.socialLinks}>
-            <a href="https://linkedin.com/in/caleb-boateng-7802b6244">
-              <img src="/linkedin-icon.svg" alt="LinkedIn" />
-            </a>
-            <a href="https://www.github.com">
-              <img src="/github-icon.svg" alt="GitHub" />
-            </a>
-            <a href="mailto:calebboa@gmail.com">
-              <img src="/email-icon.svg" alt="Email" />
-            </a>
+    <main className={`${styles.page} ${styles.editorialHome}`}>
+      <section className={styles.editorialHero} aria-labelledby="hero-title">
+        <div className={styles.heroTextColumn}>
+          <p className={styles.kicker}>Living portfolio / Public learning archive</p>
+          <h1 id="hero-title">{profile.name}</h1>
+          <p className={styles.editorialTagline}>{profile.tagline}</p>
+          <p className={styles.heroStatement}>
+            A post-college notebook for becoming more useful: studying markets,
+            building with technology, training through squash, practicing faith,
+            and serving community with discipline.
+          </p>
+          <div className={styles.editorialActions} aria-label="Homepage actions">
+            <Link href="/field-notes">Read Field Notes</Link>
+            <Link href="/projects">Selected Work</Link>
+            <Link href="/resume">Resume</Link>
           </div>
         </div>
-        <div className={styles.arrowContainer}>
-          <a href="#portfolio" className={styles.arrow}>
-            <img src="/down-arrow.svg" alt="Scroll Down" />
-          </a>
+
+        <div className={styles.heroImageColumn} aria-label="Visual notebook collage">
+          <figure className={styles.primaryImageFrame}>
+            <img src={profile.heroImage} alt={profile.heroImageAlt} />
+            <figcaption>Purpose / discipline / long view</figcaption>
+          </figure>
+          <div className={styles.imageNotes} aria-label="Current identity markers">
+            <span>Statistics</span>
+            <span>Finance</span>
+            <span>Technology</span>
+            <span>Squash</span>
+            <span>Faith</span>
+            <span>Community</span>
+          </div>
         </div>
-      </div>
-      <div id="portfolio" className={styles.portfolio}>
-        <h2>Portfolio</h2>
-        <div className={styles.projects}>
-          {portfolioItems.map((item, index) => (
-            <div key={index} className={styles.project} onClick={() => handleCardClick(item)}>
-              <h3>{item.title}</h3>
-              <img src={item.image} alt={item.title} />
-              <p>{item.description}</p>
-            </div>
+      </section>
+
+      <section className={styles.nowSection} aria-labelledby="now-title">
+        <div>
+          <p className={styles.kicker}>Now</p>
+          <h2 id="now-title">What I am sharpening.</h2>
+        </div>
+        <div className={styles.nowList}>
+          <p>
+            <strong>Study:</strong> statistics, markets, probability, and better technical judgment.
+          </p>
+          <p>
+            <strong>Build:</strong> public notes, portfolio systems, data projects, and useful tools.
+          </p>
+          <p>
+            <strong>Practice:</strong> squash, training discipline, faith, reflection, and service.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.editorialSection} aria-labelledby="notes-title">
+        <div className={styles.editorialSectionHeader}>
+          <p className={styles.kicker}>Latest Field Notes</p>
+          <h2 id="notes-title">A record of reps: ideas, logs, readings, and reflections.</h2>
+          <Link href="/field-notes">All notes</Link>
+        </div>
+        <div className={styles.noteLedger}>
+          {latestNotes.map((note, index) => (
+            <Link href={`/field-notes/${note.slug}`} className={styles.ledgerItem} key={note.slug}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div className={styles.noteCover}>
+                {note.coverImage ? (
+                  <img src={note.coverImage} alt={note.coverAlt || ""} />
+                ) : (
+                  <small>TODO: cover image</small>
+                )}
+              </div>
+              <div>
+                <p>{note.category} / {note.type}</p>
+                <h3>{note.title}</h3>
+                <small>{note.date}</small>
+              </div>
+            </Link>
           ))}
         </div>
-      </div>
-      <div id="education" className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h2>Education</h2>
-        </div>
-        <div className={styles.sectionContent}>
-          <div className={styles.card}>
-            <div className={styles.cardHeader}>
-              <h3>Middlebury College, Middlebury, VT</h3>
-              <span>August 2022 – June 2026</span>
-            </div>
-            <p><strong>Bachelor of Science: Statistics</strong>; GPA: 3.71</p>
-            <ul>
-              <li>Relevant Coursework: Intro to Data Science, Intro to Computing, Intro to Quantitative Finance, Statistical Learning, Financial Accounting</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div id="experience" className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h2>Experience</h2>
-        </div>
-        <div className={styles.sectionContent}>
-          <div className={styles.card}>
-            <img src="/tjc.png" alt="Company Logo" className={styles.companyLogo} />
-            <div className={styles.cardDetails}>
-              <div className={styles.cardHeader}>
-                <h3>The Jordan Company, New York, NY</h3>
-                <span>June 2024 – July 2024</span>
-              </div>
-              <p><strong>Investment and Data Science Intern</strong></p>
-              <ul>
-                <li>Conducted comprehensive research and company valuation for company in the construction sector, then presented our findings, successfully impacting investment decisions</li>
-                <li>Led renovation of deal database in order to streamline valuation process</li>
-                <li>Executed exploratory data analysis, then implemented machine learning in support of company valuation, ultimately impacting company-wide decisions</li>
-              </ul>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <img src="/midd.png" alt="Company Logo" className={styles.companyLogo} />
-            <div className={styles.cardDetails}>
-              <div className={styles.cardHeader}>
-                <h3>Midd Dev Club, Middlebury, VT</h3>
-                <span>December 2023 – Present</span>
-              </div>
-              <p><strong>Member</strong></p>
-              <ul>
-                <li>Co-developed Mid-Dash, a student-run online food delivery service, focusing on data-driven user experience enhancements</li>
-                <li>Expanded technical skills in backend development; gained hands-on experience with databases and server-side scripting for robust web applications</li>
-              </ul>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <img src="/sunriver.png" alt="Company Logo" className={styles.companyLogo} />
-            <div className={styles.cardDetails}>
-              <div className={styles.cardHeader}>
-                <h3>Sunriver Management, Greenwich, CT</h3>
-                <span>June 2023 – July 2023</span>
-              </div>
-              <p><strong>Research Intern</strong></p>
-              <ul>
-                <li>Integrated data with the framework program Camel to track the gaming company’s prices, its overall value, and competitors</li>
-                <li>Presented insights on generative AI, leveraging industry sentiment and usage trends for team understanding</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="leadership" className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h2>Leadership and Other Activities</h2>
-        </div>
-        <div className={styles.sectionContent}>
-          <div className={styles.card}>
-            <div className={styles.cardDetails}>
-              <p><strong>City Squash, Team Member and Volunteer</strong> (January 2012 – Present)</p>
-              <p><strong>Middlebury Squash Team, Member</strong> (September 2022 – Present)</p>
-              <p><strong>Middlebury Track and Field, Member</strong> (February 2023 – Present)</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="skills" className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h2>Skills</h2>
-        </div>
-        <div className={styles.sectionContent}>
-          <div className={styles.card}>
-            <div className={styles.cardDetails}>
-              <ul>
-                <li><strong>Data Analysis:</strong> R Studio, MATLAB, Predictive Modeling, Sentiment Analysis, Time-Series Analysis</li>
-                <li><strong>Programming:</strong> Python, Node.js, Express, MongoDB</li>
-                <li><strong>Tools:</strong> Microsoft Suite, Google Suite, Yahoo Finance API</li>
-                <li><strong>Languages:</strong> Spanish (Proficient)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
 
-      {modalData && (
-        <div className={styles.modalOverlay} onClick={handleCloseModal}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.modalClose} onClick={handleCloseModal}>×</button>
-            <h2>{modalData.title}</h2>
-            <p>{modalData.details}</p>
-            <img src={modalData.image} alt={modalData.title} className={styles.modalImage} />
-            <a href={modalData.githubLink} target="_blank" rel="noopener noreferrer" className={styles.visitSiteButton}>Visit Site</a>
-          </div>
+      <section className={styles.projectFeatureSection} aria-labelledby="projects-title">
+        <div className={styles.editorialSectionHeader}>
+          <p className={styles.kicker}>Selected Projects</p>
+          <h2 id="projects-title">Work that connects analysis, judgment, and building.</h2>
+          <Link href="/projects">Project archive</Link>
         </div>
-      )}
-    </div>
+        <div className={styles.projectFeatureGrid}>
+          {selectedProjects.map((project) => (
+            <article className={styles.projectFeature} key={project.title}>
+              <div className={styles.projectImagePanel}>
+                {project.image ? (
+                  <img src={project.image} alt={project.imageAlt || ""} />
+                ) : (
+                  <span>TODO: add project image</span>
+                )}
+              </div>
+              <div>
+                <p>{project.category}</p>
+                <h3>{project.title}</h3>
+                <span className={styles.projectFeatureDescription}>{project.description}</span>
+                <span className={styles.projectFeatureMeta}>Case study preview</span>
+                {project.link ? (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    View work
+                  </a>
+                ) : (
+                  <small className={styles.projectFeatureDescription}>TODO: add real project link when available.</small>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.resumeContactBand} aria-labelledby="contact-title">
+        <div>
+          <p className={styles.kicker}>Resume / Contact</p>
+          <h2 id="contact-title">Professional when needed. Personal by design.</h2>
+          <p>
+            Open to conversations across finance, data, technology, athletics,
+            education, faith, and community work.
+          </p>
+        </div>
+        <div className={styles.resumeContactLinks}>
+          {profile.resumePath ? (
+            <a href={profile.resumePath} download>Download Resume</a>
+          ) : (
+            <Link href="/resume">Resume</Link>
+          )}
+          <a href={`mailto:${profile.email}`}>Email</a>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </section>
+    </main>
   );
 }
