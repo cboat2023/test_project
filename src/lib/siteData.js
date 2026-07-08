@@ -9,7 +9,7 @@ export const projects = [
   {
     title: "Middlebury Budget Dashboard",
     category: "Statistics / Civic Finance",
-    image: null, // TODO: add a screenshot at /public/images/projects/middlebury-budget-dashboard.jpg.
+    image: "midd.jpg",
     imageAlt: "Middlebury Town Budget Dashboard interface preview",
     description:
       "An R/Shiny dashboard for exploring Middlebury town budget data across fiscal years, departments, revenue, expenses, and source budget PDFs.",

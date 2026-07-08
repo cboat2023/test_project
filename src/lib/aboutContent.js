@@ -12,32 +12,18 @@ export const aboutContent = {
   // TODO: Add your legal personal images to /public/images/about and set useFallback to false.
   images: [
     {
-      label: "Portrait",
-      src: "/images/about/about-portrait.jpg",
-      fallbackSrc: "/3.jpg",
-      alt: "TODO: personal portrait of Caleb",
-      useFallback: true,
+      src: "/3.jpg"
+  
     },
     {
-      label: "Squash",
-      src: "/images/about/squash.jpg",
-      fallbackSrc: "/praying_musashi.png",
-      alt: "TODO: squash or training image",
-      useFallback: true,
+      src: "/praying_musashi.png",
+  
     },
     {
-      label: "Notebook",
-      src: "/images/about/notebook.jpg",
-      fallbackSrc: "/prep.jpg",
-      alt: "TODO: notebook, books, or study image",
-      useFallback: true,
+      src: "/prep.jpg",
     },
     {
-      label: "Community",
-      src: "/images/about/community.jpg",
-      fallbackSrc: "/God_first.jpg",
-      alt: "TODO: community or service image",
-      useFallback: true,
+      src: "/God_first.jpg",
     },
   ],
   sitePurpose: [
