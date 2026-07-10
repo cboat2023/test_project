@@ -1,4 +1,5 @@
 import NavBar from '@/components/navbar';
+import 'katex/dist/katex.min.css';
 import '../styles/globals.css';
 
 

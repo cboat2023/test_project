@@ -1,7 +1,16 @@
 import fs from "fs";
 import path from "path";
+import katex from "katex";
 
 const notesDirectory = path.join(process.cwd(), "content", "field-notes");
+
+function createSlug(fileName) {
+  return fileName
+    .replace(/\.md$/i, "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
 
 function parseFrontmatter(fileContent) {
   const match = fileContent.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -41,16 +50,38 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;");
 }
 
-function inlineMarkdown(value) {
+function basicInlineMarkdown(value) {
   return escapeHtml(value)
     .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
     .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+}
+
+function renderMath(value, displayMode) {
+  return katex.renderToString(value, {
+    displayMode,
+    throwOnError: false,
+    strict: false,
+  });
+}
+
+function inlineMarkdown(value) {
+  return value
+    .split(/(\$[^$\n]+\$)/g)
+    .map((part) => {
+      if (part.startsWith("$") && part.endsWith("$")) {
+        return renderMath(part.slice(1, -1), false);
+      }
+
+      return basicInlineMarkdown(part);
+    })
+    .join("");
 }
 
 export function markdownToHtml(markdown) {
   const lines = markdown.split("\n");
   const html = [];
   let listItems = [];
+  let mathLines = null;
 
   const flushList = () => {
     if (listItems.length > 0) {
@@ -62,12 +93,38 @@ export function markdownToHtml(markdown) {
   lines.forEach((line) => {
     const trimmed = line.trim();
 
+    if (mathLines !== null) {
+      if (trimmed === "$$" || trimmed === "\\]") {
+        html.push(renderMath(mathLines.join("\n"), true));
+        mathLines = null;
+      } else {
+        mathLines.push(line);
+      }
+      return;
+    }
+
+    if (trimmed === "$$" || trimmed === "\\[") {
+      flushList();
+      mathLines = [];
+      return;
+    }
+
     if (!trimmed) {
       flushList();
       return;
     }
 
-    if (trimmed.startsWith("- ")) {
+    const taskItem = trimmed.match(/^[*-] \[([ xX])\]\s+(.*)$/);
+
+    if (taskItem) {
+      const checked = taskItem[1].toLowerCase() === "x";
+      listItems.push(
+        `<li class="task-list-item"><input type="checkbox" disabled${checked ? " checked" : ""} aria-hidden="true">${inlineMarkdown(taskItem[2])}</li>`
+      );
+      return;
+    }
+
+    if (/^[*-] /.test(trimmed)) {
       listItems.push(`<li>${inlineMarkdown(trimmed.slice(2))}</li>`);
       return;
     }
@@ -84,6 +141,11 @@ export function markdownToHtml(markdown) {
   });
 
   flushList();
+
+  if (mathLines !== null) {
+    html.push(`<p>${inlineMarkdown(mathLines.join(" "))}</p>`);
+  }
+
   return html.join("\n");
 }
 
@@ -96,7 +158,7 @@ export function getAllNotes() {
     .readdirSync(notesDirectory)
     .filter((fileName) => fileName.endsWith(".md"))
     .map((fileName) => {
-      const slug = fileName.replace(/\.md$/, "");
+      const slug = createSlug(fileName);
       const fullPath = path.join(notesDirectory, fileName);
       const fileContent = fs.readFileSync(fullPath, "utf8");
       const { metadata, content } = parseFrontmatter(fileContent);
@@ -118,7 +180,8 @@ export function getAllNotes() {
 }
 
 export function getNoteBySlug(slug) {
-  return getAllNotes().find((note) => note.slug === slug);
+  const normalizedSlug = slug.trim().toLowerCase().replace(/\s+/g, "-");
+  return getAllNotes().find((note) => note.slug === normalizedSlug);
 }
 
 export function getRelatedNotes(note, limit = 3) {

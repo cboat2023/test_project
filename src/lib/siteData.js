@@ -7,6 +7,18 @@ export const profile = {
 
 export const projects = [
   {
+    title: "The Ghana Squash Project",
+    category: "Community / Sport / Storytelling",
+    image: "/Original Photo.JPG",
+    imageAlt: "The Ghana Squash Project photo",
+    description:
+      "A community and storytelling project documenting Ghana squash, its history, and the people building the sport forward.",
+    details:
+      "This project gathers research, photos, interviews, video, and field notes into a public record of Ghana squash: where it has been, where it is now, and what support could help it grow.",
+    tags: ["Ghana", "Squash", "Community", "Storytelling", "Sport Development"],
+    link: "https://www.instagram.com/theghanasquashproject/",
+  },
+  {
     title: "Middlebury Budget Dashboard",
     category: "Statistics / Civic Finance",
     image: "midd.jpg",

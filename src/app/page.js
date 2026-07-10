@@ -6,7 +6,7 @@ import { getAllNotes } from "@/lib/fieldNotes";
 import styles from "../styles/Home.module.css";
 
 export default function HomePage() {
-  const latestNotes = getAllNotes().slice(0, 5);
+  const latestNotes = getAllNotes().slice(0, 3);
   const selectedProjects = projects.slice(0, 3);
 
   return (
@@ -33,7 +33,7 @@ export default function HomePage() {
         <span>Built to go the distance</span>
       </section>
 
-      <section className={styles.homeMagazineGrid} aria-label="Homepage archive preview">
+      <section className={styles.homeMagazineGrid} aria-label="Homepage field notes preview">
         <section className={styles.magazinePanel} aria-labelledby="notes-title">
           <div className={styles.magazineHeading}>
             <p className={styles.kicker}>Latest Field Notes</p>
@@ -77,30 +77,6 @@ export default function HomePage() {
             ))}
           </div>
         </section>
-
-        <aside className={styles.sideSystemPanel} aria-label="Current focus and principles">
-          <section aria-labelledby="focus-title">
-            <p className={styles.kicker}>Now / Current Focus</p>
-            <h2 id="focus-title">Current formation.</h2>
-            <div className={styles.sideFocusList}>
-              {homeContent.currentFocus.map((item) => (
-                <article key={item.area}>
-                  <h3>{item.area}</h3>
-                  <p>{item.detail}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-
-          <section aria-labelledby="principles-title">
-            <ol className={styles.sidePrinciples}>
-              {homeContent.principles.map((principle) => (
-                <li key={principle}>{principle}</li>
-              ))}
-            </ol>
-          </section>
-        </aside>
       </section> 
 
       <section className={styles.quoteSection} aria-labelledby="quote-category">

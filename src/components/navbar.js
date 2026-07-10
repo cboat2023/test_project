@@ -3,6 +3,7 @@ import styles from "../styles/Navbar.module.css";
 
 export default function Navbar() {
   const links = [
+    { href: "/field-desk", label: "Field Desk" },
     { href: "/field-notes", label: "Field Notes" },
     { href: "/projects", label: "Work" },
     { href: "/library", label: "Archive" },
